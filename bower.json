@@ -1,0 +1,8 @@
+{
+	"name": "ffmpeg-compressor",
+	"dependencies": {
+		"bootstrap": "~3.2.0",
+		"jquery": "~2.0.0",
+		"underscore": "~1.7.0"
+	}
+}

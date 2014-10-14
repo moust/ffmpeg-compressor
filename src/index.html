@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>FFmpeg Compressor</title>
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+
+		<div class="container">
+
+			<form role="form" id="form-options">
+
+				<div class="row">
+					<div class="col-sm-12 col-md-4">
+
+						<div class="form-group">
+							<label for="inputFile">File input</label>
+							<input type="file" class="form-control" id="inputFile" name="inputFile">
+						</div>
+
+						<hr />
+
+						<div class="form-group">
+							<label for="outputFile">File output</label>
+							<input type="file" class="form-control" id="outputFile" name="outputFile" nwsaveas>
+						</div>
+
+						<div class="form-group">
+							<label for="format">Output format</label>
+							<select class="form-control" id="format" name="format">
+							</select>
+						</div>
+
+						<hr />
+
+						<div class="form-group">
+							<label for="preset">Preset</label>
+							<select class="form-control" id="preset" name="preset">
+							</select>
+						</div>
+
+					</div> <!-- .col-sm-12 -->
+
+					<div class="col-sm-12 col-md-8">
+
+						<ul class="nav nav-tabs" role="tablist" id="mainTab">
+							<li class="active"><a href="#video-tab" role="tab" data-toggle="tab">Video</a></li>
+							<li><a href="#audio-tab" role="tab" data-toggle="tab">Audio</a></li>
+						</ul>
+
+						<div class="tab-content">
+
+							<div class="tab-pane active" id="video-tab">
+
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" id="withVideo" name="withVideo" checked> Video
+									</label>
+								</div>
+
+								<div class="form-group">
+									<label for="videoCodec">Codec</label>
+									<select class="form-control" id="videoCodec" name="videoCodec">
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="videoBitrate">Bitrate</label>
+									<input type="text" class="form-control" id="videoBitrate" name="videoBitrate" value="2000k" data-toggle="tooltip" data-placement="bottom" title="May be a number or a string with an optional k suffix.">
+								</div>
+
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" id="videoBitrateConstant" name="videoBitrateConstant"> Enforce constant bitrate
+									</label>
+								</div>
+
+								<div class="form-group">
+									<label for="fps">FPS</label>
+									<input type="number" class="form-control" id="fps" name="fps" value="29.7">
+								</div>
+
+								<div class="form-group">
+									<label for="size">Size</label>
+									<input type="text" class="form-control" id="size" name="size" value="640x480" data-toggle="tooltip" data-placement="bottom" title="
+										<div style='text-align:left;'>
+											May have one of the following formats:<br />
+											<ul>
+												<li>640x480: set a fixed output frame size. Unless autopad() is called, this may result in the video being stretched or squeezed to fit the requested size.</li>
+												<li>640x?: set a fixed width and compute height automatically. If aspect() is also called, it is used to compute video height; otherwise it is computed so that the input aspect ratio is preserved.</li>
+												<li>?x480: set a fixed height and compute width automatically. If aspect() is also called, it is used to compute video width; otherwise it is computed so that the input aspect ratio is preserved.</li>
+												<li>50%: rescale both width and height to the given percentage. Aspect ratio is always preserved.</li>
+											</ul>
+										</div>
+									">
+								</div>
+
+								<div class="form-group">
+									<label for="aspect">Aspect</label>
+									<input type="text" class="form-control" id="aspect" name="aspect" value="16:9" data-toggle="tooltip" data-placement="bottom" title="May either be a number or a X:Y string.">
+								</div>
+
+								<div class="form-group">
+									<div class="checkbox">
+										<label data-toggle="tooltip" data-placement="right" title="The behaviour of this method depends on calls made to other video size methods.">
+											<input type="checkbox" id="autopad" name="autopad"> Autopad
+										</label>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="outputOptions">Additional options</label>
+									<input type="text" class="form-control" id="outputOptions" name="outputOptions">
+									<div class="help-block">
+										See documentation FFmpeg: <a href="https://www.ffmpeg.org/ffmpeg.html#Options">https://www.ffmpeg.org/ffmpeg.html#Options</a>
+									</div>
+								</div>
+
+							</div> <!-- .tab-pane -->
+
+							<div class="tab-pane" id="audio-tab">
+
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" id="withAudio" name="withAudio" checked> Audio
+									</label>
+								</div>
+
+								<div class="form-group">
+									<label for="audioCodec">Codec</label>
+									<select class="form-control" id="audioCodec" name="audioCodec">
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="audioBitrate">Bitrate</label>
+									<input type="text" class="form-control" id="audioBitrate" name="audioBitrate" value="128k" data-toggle="tooltip" data-placement="bottom" title="May be a number or a string with an optional k suffix.">
+								</div>
+
+								<div class="form-group">
+									<label for="audioChannels">Channels</label>
+									<input type="number"class="form-control" id="audioChannels" name="audioChannels" value="2">
+								</div>
+
+								<div class="form-group">
+									<label for="audioFrequency">Frequency</label>
+									<div class="input-group">
+										<input type="number"class="form-control" id="audioFrequency" name="audioFrequency" value="44100">
+										<span class="input-group-addon">Hz</span>
+									</div>
+								</div>
+
+							</div> <!-- .tab-pane -->
+
+						</div> <!-- .tab-content -->
+
+					</div> <!-- .col-sm-12 -->
+				</div> <!-- .row -->
+
+			</form>
+
+			<div class="footer">
+				<div class="col-sm-10">
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+					</div>
+				</div>
+				<div class="col-sm-2 text-right">
+					<button type="button" class="btn btn-primary" id="btn-encode">Encode</button>
+				</div>
+			</div>
+
+		</div> <!-- .container -->
+
+		<script src="vendor/jquery/jquery.js"></script>
+		<script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="vendor/underscore/underscore.js"></script>
+		<script src="main.js"></script>
+	</body>
+</html>

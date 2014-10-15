@@ -32,3 +32,6 @@ src/.sass-cache
 
 # Cache folder
 cache
+
+# Vendors
+src/vendor
